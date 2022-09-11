@@ -21,7 +21,7 @@ namespace Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Domain.Entities.Brand", b =>
+            modelBuilder.Entity("Domain.Entities.ProgrammingLanguage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,102 +30,31 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LanguageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Name");
+                        .HasColumnName("LanguageName");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands", (string)null);
+                    b.ToTable("ProgrammingLanguages", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "BMW"
+                            LanguageName = "C#"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Mercedes"
-                        });
-                });
-
-            modelBuilder.Entity("Domain.Entities.Model", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int")
-                        .HasColumnName("BrandId");
-
-                    b.Property<decimal>("DailyPrice")
-                        .HasColumnType("decimal(18,2)")
-                        .HasColumnName("DailyPrice");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ImageUrl");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
-
-                    b.ToTable("Models", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BrandId = 1,
-                            DailyPrice = 1500m,
-                            ImageUrl = "",
-                            Name = "Series 4"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BrandId = 1,
-                            DailyPrice = 1200m,
-                            ImageUrl = "",
-                            Name = "Series 3"
+                            LanguageName = "Java"
                         },
                         new
                         {
                             Id = 3,
-                            BrandId = 2,
-                            DailyPrice = 1000m,
-                            ImageUrl = "",
-                            Name = "A180"
+                            LanguageName = "Python"
                         });
-                });
-
-            modelBuilder.Entity("Domain.Entities.Model", b =>
-                {
-                    b.HasOne("Domain.Entities.Brand", "Brand")
-                        .WithMany("Models")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Brand", b =>
-                {
-                    b.Navigation("Models");
                 });
 #pragma warning restore 612, 618
         }

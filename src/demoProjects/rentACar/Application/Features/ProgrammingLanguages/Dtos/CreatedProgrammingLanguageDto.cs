@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Brands.Dtos
+namespace Application.Features.ProgrammingLanguages.Dtos
 {
-    public class BrandListDto
+    public class CreatedProgrammingLanguageDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string LanguageName { get; set; }
     }
 }
